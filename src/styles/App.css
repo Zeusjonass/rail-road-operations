@@ -2,11 +2,17 @@
 
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap");
 
+.App {
+  text-align: center;
+}
+
 html,
 body,
 .Container {
   height: 100%;
   font-family: "Alegreya Sans", sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
 body {
@@ -40,10 +46,12 @@ p {
   font-family: "Alegreya Sans", sans-serif;
 }
 .trainBox {
-  height: 400px;
-  width: 450px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10%;
+  height: 400px;
+}
+
+.table {
+  margin: 10px;
+  width: 400px;
+  height: 280px;
 }
