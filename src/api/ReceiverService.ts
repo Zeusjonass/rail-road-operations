@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { Train } from '../types/TrainType';
-export const baseUrl = 'http://localhost:8080/destinations';
+import { Receiver } from '../types/ReceiverType';
+export const baseUrl = 'http://localhost:8080/receivers';
 
 export const getDestinations = () => {
-  return axios.get<Train[]>(baseUrl, {
+  return axios.get<Receiver[]>(baseUrl, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -11,23 +11,23 @@ export const getDestinations = () => {
 };
 
 export const getDestination = (name: string) => {
-  return axios.get<Train[]>(`${baseUrl}/${name}`, {
+  return axios.get<Receiver[]>(`${baseUrl}/${name}`, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
 };
 
-export const createDestination = (train: Train) => {
-  return axios.post<Train[]>(baseUrl, train, {
+export const createDestination = (receiver: Receiver) => {
+  return axios.post<Receiver[]>(baseUrl, receiver, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
 };
 
-export const updateDestination = (train: Train, name: string) => {
-  return axios.patch<Train[]>(`${baseUrl}/${name}`, train, {
+export const updateDestination = (receiver: Receiver, name: string) => {
+  return axios.patch<Receiver[]>(`${baseUrl}/${name}`, receiver, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -35,7 +35,7 @@ export const updateDestination = (train: Train, name: string) => {
 };
 
 export const deleteDestination = (name: string) => {
-  return axios.delete<Train[]>(`${baseUrl}/${name}`, {
+  return axios.delete<Receiver[]>(`${baseUrl}/${name}`, {
     headers: {
       'Content-Type': 'application/json',
     },
