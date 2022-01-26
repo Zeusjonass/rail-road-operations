@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "../src/styles/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import TrainBox from "./components/TrainBox";
 
 ReactDOM.render(
   <React.StrictMode>
-    <TrainBox />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
