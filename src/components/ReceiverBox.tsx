@@ -6,6 +6,8 @@ import {
   addPriorityToJSONArray,
 } from "../functions/functions";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import VerticalTable from "./verticalTable";
+
 
 const ReceiverBox = () => {
   const [result, setResult] = useState<any>(null);
@@ -37,36 +39,12 @@ const ReceiverBox = () => {
   }, []);
 
   return (
-    <>
-      {result && result.length > 0 ? (
-        <div className="trainBox">
-          <div className="table">
-            <DataGrid
-              sx={{
-                boxShadow: 2,
-                border: 2,
-                borderColor: "primary.light",
-                "& .MuiDataGrid-cell:hover": {
-                  color: "primary.main",
-                },
-              }}
-              rows={result}
-              columns={columns}
-              pageSize={3}
-              rowsPerPageOptions={[3]}
-              disableSelectionOnClick
-              editMode="row"
-              // onEditRowsModelChange={(params, event) => {
-              //   console.log(params.row);
-              // }}
-              //   onEditRowsModelChange={handleEditRowsModelChange}
-            />
-          </div>
-        </div>
-      ) : (
-        "Loading..."
-      )}
-    </>
+    <div>
+      <h1>react-list-drag-and-drop</h1>
+      <div className="examples">
+        <VerticalTable />
+      </div>
+    </div>
   );
 };
 export default ReceiverBox;

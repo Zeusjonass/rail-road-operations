@@ -1,8 +1,9 @@
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import React from "react";
 import "../src/styles/App.css";
 import TrainBox from "./components/TrainBox";
 import ReceiverBox from "./components/ReceiverBox";
+import InputBox from "./components/InputBox";
 
 const darkTheme = createTheme({
   palette: {
@@ -18,6 +19,10 @@ function App() {
       </div>
       <TrainBox />
       <ReceiverBox />
+      <Button variant="contained" onClick={() => {
+        alert('clicked');
+      }}>Sort</Button>
+      <InputBox />
     </div>
   );
 }
