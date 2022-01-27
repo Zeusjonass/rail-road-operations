@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
-import { getDestinations } from "../api/TrainService";
+import { getDestinations } from "../api/ReceiverService";
 import {
   addIdToJSONArray,
   addPriorityToJSONArray,
 } from "../functions/functions";
-import { DataGrid, GridColumns, GridEditRowsModel } from "@mui/x-data-grid";
+import { DataGrid, GridColumns } from "@mui/x-data-grid";
 
-const TrainBox = () => {
+const ReceiverBox = () => {
   const [result, setResult] = useState<any>(null);
-
-  const [editRowsModel, setEditRowsModel] = React.useState({});
-
-  const handleEditRowsModelChange = React.useCallback(
-    (model: GridEditRowsModel) => {
-      console.log(model);
-      setEditRowsModel(model);
-    },
-    []
-  );
 
   const columns: GridColumns = [
     {
@@ -35,7 +25,7 @@ const TrainBox = () => {
     },
   ];
   useEffect(() => {
-    const fetchTrain = async () => {
+    const fetchReceiver = async () => {
       const response = await getDestinations();
       const data = response.data;
       addIdToJSONArray(data);
@@ -43,7 +33,7 @@ const TrainBox = () => {
       // console.log(data);
       setResult(data);
     };
-    fetchTrain().catch((error) => console.log(error));
+    fetchReceiver().catch((error) => console.log(error));
   }, []);
 
   return (
@@ -66,6 +56,10 @@ const TrainBox = () => {
               rowsPerPageOptions={[3]}
               disableSelectionOnClick
               editMode="row"
+              // onEditRowsModelChange={(params, event) => {
+              //   console.log(params.row);
+              // }}
+              //   onEditRowsModelChange={handleEditRowsModelChange}
             />
           </div>
         </div>
@@ -75,4 +69,4 @@ const TrainBox = () => {
     </>
   );
 };
-export default TrainBox;
+export default ReceiverBox;
