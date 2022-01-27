@@ -108,6 +108,7 @@ const InputBox = () => {
                                     <input
                                         type="text"
                                         name="name"
+                                        id="nameOfCar"
                                         required
                                         placeholder="Name Of Car"
                                         onChange={handleAddFormChange}

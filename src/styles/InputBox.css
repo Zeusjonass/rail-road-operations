@@ -1,6 +1,5 @@
-.inputTable{
-    margin: 20px;
-    text-align: center;
-    width: 800px;
-    font-size: 24px;
+#nameOfCar{
+    border-radius: 5px;
+    height: 25px;
+    width: 180px;
 }
