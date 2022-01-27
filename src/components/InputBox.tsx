@@ -1,23 +1,24 @@
 
 import React, { useState, useEffect, Component } from "react";
 import Select from 'react-select';
+import "../styles/InputBox.css";
 
 const InputBox = () => {
 
     const [input, setInput] = useState([
         {
-            "nameOfCar": "Car 1",
+            "name": "Car 1",
             "destination": "Houston",
             "receiver": "FedEx"
         },
         {
-            "nameOfCar": "Car 2",
+            "name": "Car 2",
             "destination": "Chicago",
             "receiver": "UPS"
         },
     ]);
     const [newRow, setNewRow] = useState({
-        nameOfCar: "",
+        name: "",
         destination: "",
         receiver: ""
     });
@@ -39,76 +40,95 @@ const InputBox = () => {
     }, [input]);
 
     const addRow = (event) => {
-        event.preventDefault();
-        const addedRow = {
-            nameOfCar: newRow.nameOfCar,
-            destination: newRow.destination,
-            receiver: newRow.receiver,
-        };
+        if (newRow.name !== "" && newRow.destination !== "" && newRow.receiver !== "" ) {
+            event.preventDefault();
+            const addedRow = {
+                name: newRow.name,
+                destination: newRow.destination,
+                receiver: newRow.receiver,
+            };
 
-        const newInput = [...input, addedRow];
-        setInput(newInput);
+            const newInput = [...input, addedRow];
+            console.log(newInput);
+            setInput(newInput);
+        }
+        else{
+            alert('Please fill all fields');
+        }
     };
 
-    const removeRow = (nameOfCar) => {
+    const removeRow = (name) => {
         const newInput = input.filter(function (row) {
-            return row.nameOfCar !== nameOfCar;
+            return row.name !== name;
         });
         setInput(newInput);
     };
 
     const handleAddFormChange = (event) => {
-        event.preventDefault();
-
         const fieldName = event.target.getAttribute("name");
         const fieldValue = event.target.value;
 
         const newFormData = { ...newRow };
         newFormData[fieldName] = fieldValue;
-
         setNewRow(newFormData);
     };
+
+    const handleSelectChange = (selectedOption, select) => {
+        const newFormData = { ...newRow };
+        newFormData[select] = selectedOption;
+        setNewRow(newFormData);
+      };
 
     return (
         <>
             <div className="inputBox">
-                <table>
-                    <th>
+                <table className="inputTable">
+                    <thead>
                         <tr>
-                            <td>Name of Car</td>
-                            <td>Destination</td>
-                            <td>Receiver</td>
-                            <td></td>
+                            <th>Name of Car</th>
+                            <th>Destination</th>
+                            <th>Receiver</th>
+                            <th></th>
                         </tr>
-                    </th>
+                    </thead>
                     <tbody>
-                        {input.map((row) => {
-                            <tr>
-                                <td>{row.nameOfCar}</td>
-                                <td>{row.destination}</td>
-                                <td>{row.receiver}</td>
-                                <td><button onClick={() => { removeRow(row.nameOfCar) }}>Remove</button></td>
-                            </tr>
+                        {input.map((row, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{row.name}</td>
+                                    <td>{row.destination}</td>
+                                    <td>{row.receiver}</td>
+                                    <td><button onClick={() => { removeRow(row.name) }}>Remove</button></td>
+                                </tr>
+                            );
                         })}
                         <tr>
-                            <form onSubmit={addRow}>
-                                <td>
-                                    <input
-                                        type="text"
-                                        name="nameOfCar"
-                                        required
-                                        placeholder="Name Of Car"
-                                        onChange={handleAddFormChange}
-                                    />
-                                </td>
-                                <td>
-                                    <Select options={destinations} onChange={handleAddFormChange} />
-                                </td>
-                                <td>
-                                    <Select options={receivers} onChange={handleAddFormChange} />
-                                </td>
-                                <td><button type="submit">Add</button></td>
-                            </form>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    required
+                                    placeholder="Name Of Car"
+                                    onChange={handleAddFormChange}
+                                />
+                            </td>
+                            <td>
+                                <Select options={destinations} 
+                                    onChange={(v: any) => {
+                                        handleSelectChange(v.value, "destination");
+                                    }}
+                                />
+                            </td>
+                            <td>
+                                <Select options={receivers} 
+                                    onChange={(v: any) => {
+                                        handleSelectChange(v.value, "receiver");
+                                    }} 
+                                />
+                            </td>
+                            <td>
+                                <button type="button" onClick={addRow}>Add</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

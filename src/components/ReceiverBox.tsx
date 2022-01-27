@@ -6,7 +6,7 @@ import {
   addPriorityToJSONArray,
 } from "../functions/functions";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import VerticalTable from "./verticalTable";
+import VerticalTable from "./VerticalTable";
 
 
 const ReceiverBox = () => {

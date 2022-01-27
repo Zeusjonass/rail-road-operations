@@ -38,8 +38,8 @@ const TrainBox = () => {
     const fetchTrain = async () => {
       const response = await getDestinations();
       const data = response.data;
-      addIdToJSONArray(data);
-      addPriorityToJSONArray(data);
+      // addIdToJSONArray(data);
+      // addPriorityToJSONArray(data);
       // console.log(data);
       setResult(data);
     };
@@ -61,6 +61,7 @@ const TrainBox = () => {
                 },
               }}
               rows={result}
+              getRowId={(row) => row.name}
               columns={columns}
               pageSize={3}
               rowsPerPageOptions={[3]}

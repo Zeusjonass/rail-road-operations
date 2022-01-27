@@ -8,7 +8,7 @@ const VerticalTable = () => {
 
     const handleRLDDChange = (reorderedItems: Array<Item>) => {
         // console.log('Example.handleRLDDChange');
-        setState({ result: reorderedItems });
+        setResult(result);
     };
 
     useEffect(() => {
@@ -23,12 +23,12 @@ const VerticalTable = () => {
     return (
         <>
             <div className="example vertical">
-                <RLDD
+                {/* <RLDD
                     cssClasses="list-container"
                     items={result}
                     itemRenderer={itemRenderer}
                     onChange={handleRLDDChange}
-                />
+                /> */}
             </div>
         </>
     );
