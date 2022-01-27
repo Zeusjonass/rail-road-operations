@@ -19,9 +19,6 @@ function App() {
       </div>
       <TrainBox />
       <ReceiverBox />
-      <Button variant="contained" onClick={() => {
-        alert('clicked');
-      }}>Sort</Button>
       <InputBox />
     </div>
   );

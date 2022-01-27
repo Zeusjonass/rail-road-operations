@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from "@mui/material";
 
 const InputBox = () => {
 
@@ -48,16 +49,21 @@ const InputBox = () => {
 
     const addRow = (event) => {
         if (newRow.name !== "" && newRow.destination !== "" && newRow.receiver !== "" ) {
-            event.preventDefault();
-            const addedRow = {
-                name: newRow.name,
-                destination: newRow.destination,
-                receiver: newRow.receiver,
-            };
+            //if(newRow.name no existe en input){
+                event.preventDefault();
+                const addedRow = {
+                    name: newRow.name,
+                    destination: newRow.destination,
+                    receiver: newRow.receiver,
+                };
 
-            const newInput = [...input, addedRow];
-            console.log(newInput);
-            setInput(newInput);
+                const newInput = [...input, addedRow];
+                console.log(newInput);
+                setInput(newInput);
+            // }
+            // else{
+            //     alert('Este nombre de car ya existe papuu');
+            // }
         }
         else{
             alert('Please fill all fields');
@@ -86,6 +92,10 @@ const InputBox = () => {
         setNewRow(newFormData);
       };
 
+    const handleSort = () => {
+        alert('Haz tu tarea Irvin');
+    }
+
     return (
         <>
             <div className="inputBox">
@@ -96,7 +106,11 @@ const InputBox = () => {
                                 <TableCell align="center">Name of Car</TableCell>
                                 <TableCell align="center">Destination</TableCell>
                                 <TableCell align="center">Receiver</TableCell>
-                                <TableCell></TableCell>
+                                <TableCell>
+                                    <Button variant="contained" onClick={handleSort}>
+                                        Sort
+                                    </Button>
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
