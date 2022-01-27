@@ -2,6 +2,13 @@
 import React, { useState, useEffect, Component } from "react";
 import Select from 'react-select';
 import "../styles/InputBox.css";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const InputBox = () => {
 
@@ -82,56 +89,62 @@ const InputBox = () => {
     return (
         <>
             <div className="inputBox">
-                <table className="inputTable">
-                    <thead>
-                        <tr>
-                            <th>Name of Car</th>
-                            <th>Destination</th>
-                            <th>Receiver</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {input.map((row, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{row.name}</td>
-                                    <td>{row.destination}</td>
-                                    <td>{row.receiver}</td>
-                                    <td><button onClick={() => { removeRow(row.name) }}>Remove</button></td>
-                                </tr>
-                            );
-                        })}
-                        <tr>
-                            <td>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    required
-                                    placeholder="Name Of Car"
-                                    onChange={handleAddFormChange}
-                                />
-                            </td>
-                            <td>
-                                <Select options={destinations} 
-                                    onChange={(v: any) => {
-                                        handleSelectChange(v.value, "destination");
-                                    }}
-                                />
-                            </td>
-                            <td>
-                                <Select options={receivers} 
-                                    onChange={(v: any) => {
-                                        handleSelectChange(v.value, "receiver");
-                                    }} 
-                                />
-                            </td>
-                            <td>
-                                <button type="button" onClick={addRow}>Add</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <TableContainer sx={{ margin: 5, }} component={Paper}>
+                    <Table sx={{ minWidth: 650, }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center">Name of Car</TableCell>
+                                <TableCell align="center">Destination</TableCell>
+                                <TableCell align="center">Receiver</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow
+                                key="newRow"
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="center">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required
+                                        placeholder="Name Of Car"
+                                        onChange={handleAddFormChange}
+                                    />
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Select options={destinations} 
+                                        onChange={(v: any) => {
+                                            handleSelectChange(v.value, "destination");
+                                        }}
+                                    />
+                                </TableCell>
+                                <TableCell align="center">
+                                    <Select options={receivers} 
+                                        onChange={(v: any) => {
+                                            handleSelectChange(v.value, "receiver");
+                                        }} 
+                                    />
+                                </TableCell>
+                                <TableCell align="center">
+                                    <button type="button" onClick={addRow}>Add</button>
+                                </TableCell>
+                            </TableRow>
+                            {input.map((row) => (
+                                <TableRow
+                                    key={row.name}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell align="center">{row.name}</TableCell>
+                                    <TableCell align="center">{row.destination}</TableCell>
+                                    <TableCell align="center">{row.receiver}</TableCell>
+                                    <TableCell align="center"><button onClick={() => { removeRow(row.name) }}>Remove</button></TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
         </>
     );
