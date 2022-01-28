@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
-import { getDestinations } from "../api/ReceiverService";
+import { getReceivers } from "../api/ReceiverService";
 import {
   addIdToJSONArray,
   addPriorityToJSONArray,
 } from "../functions/functions";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
 import VerticalTable from "./VerticalTable";
-
 
 const ReceiverBox = () => {
   const [result, setResult] = useState<any>(null);
@@ -28,7 +27,7 @@ const ReceiverBox = () => {
   ];
   useEffect(() => {
     const fetchReceiver = async () => {
-      const response = await getDestinations();
+      const response = await getReceivers();
       const data = response.data;
       addIdToJSONArray(data);
       addPriorityToJSONArray(data);
