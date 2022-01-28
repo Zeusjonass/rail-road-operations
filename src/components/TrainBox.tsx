@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 import { getDestinations } from "../api/TrainService";
-import {
-  addIdToJSONArray,
-  addPriorityToJSONArray,
-} from "../functions/functions";
 import { DataGrid, GridColumns, GridEditRowsModel } from "@mui/x-data-grid";
 
 const TrainBox = () => {
@@ -38,9 +34,6 @@ const TrainBox = () => {
     const fetchTrain = async () => {
       const response = await getDestinations();
       const data = response.data;
-      // addIdToJSONArray(data);
-      // addPriorityToJSONArray(data);
-      // console.log(data);
       setResult(data);
     };
     fetchTrain().catch((error) => console.log(error));
