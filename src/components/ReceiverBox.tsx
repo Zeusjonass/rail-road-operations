@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 import { getReceivers } from "../api/ReceiverService";
-import {
-  addIdToJSONArray,
-  addPriorityToJSONArray,
-} from "../functions/functions";
-import { DataGrid, GridColumns } from "@mui/x-data-grid";
-import VerticalTable from "./VerticalTable";
+import { DataGrid, GridColumns, GridEditRowsModel } from "@mui/x-data-grid";
 
 const ReceiverBox = () => {
   const [result, setResult] = useState<any>(null);
+
+  const [editRowsModel, setEditRowsModel] = React.useState({});
+
+  const handleEditRowsModelChange = React.useCallback(
+    (model: GridEditRowsModel) => {
+      console.log(model);
+      setEditRowsModel(model);
+    },
+    []
+  );
 
   const columns: GridColumns = [
     {
@@ -26,24 +31,42 @@ const ReceiverBox = () => {
     },
   ];
   useEffect(() => {
-    const fetchReceiver = async () => {
+    const fetchTrain = async () => {
       const response = await getReceivers();
       const data = response.data;
-      addIdToJSONArray(data);
-      addPriorityToJSONArray(data);
-      // console.log(data);
       setResult(data);
     };
-    fetchReceiver().catch((error) => console.log(error));
+    fetchTrain().catch((error) => console.log(error));
   }, []);
 
   return (
-    <div>
-      <h1>react-list-drag-and-drop</h1>
-      <div className="examples">
-        <VerticalTable />
-      </div>
-    </div>
+    <>
+      {result && result.length > 0 ? (
+        <div className="trainBox">
+          <div className="table">
+            <DataGrid
+              sx={{
+                boxShadow: 2,
+                border: 2,
+                borderColor: "primary.light",
+                "& .MuiDataGrid-cell:hover": {
+                  color: "primary.main",
+                },
+              }}
+              rows={result}
+              getRowId={(row) => row.name}
+              columns={columns}
+              pageSize={3}
+              rowsPerPageOptions={[3]}
+              disableSelectionOnClick
+              editMode="row"
+            />
+          </div>
+        </div>
+      ) : (
+        "Loading..."
+      )}
+    </>
   );
 };
 export default ReceiverBox;
