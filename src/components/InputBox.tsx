@@ -10,8 +10,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { getDestinations } from "../api/TrainService";
 import { getReceivers } from "../api/ReceiverService";
-import Swal from "sweetalert2";
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
+import { sort } from '../api/SortService';
+import { Cart } from '../types/CartType';
+import Swal from 'sweetalert2';
 
 const InputBox = () => {
   const [destinations, setDestinations] = useState<any>(null);
@@ -40,7 +42,7 @@ const InputBox = () => {
     fetchReceivers().catch((error) => console.log(error));
     setLoading(false);
   }, [input, loading]);
-
+  
   const fetchDestinations = async () => {
     const response = await getDestinations();
     const data = response.data;
@@ -98,7 +100,7 @@ const InputBox = () => {
   };
 
   const handleAddFormChange = (event) => {
-    const fieldName = event.target.getAttribute("name");
+    const fieldName = event.target.getAttribute('name');
     const fieldValue = event.target.value;
 
     const newFormData = { ...newRow };
@@ -112,8 +114,18 @@ const InputBox = () => {
     setNewRow(newFormData);
   };
 
-  const handleSort = () => {
-    alert("Haz tu tarea Irvin");
+  const handleSort = async () => {
+    console.log('Old Data: ', input);
+    const response = await sort(input);
+    const data = response.data;
+    console.log('New Data: ', data);
+    Swal.fire({
+      title: ':D',
+      text: 'I did my homework! Look at the console',
+      icon: 'success',
+      confirmButtonText: 'Kudos',
+    });
+    // TODO Update the output table with the sorted data
   };
 
   return (
