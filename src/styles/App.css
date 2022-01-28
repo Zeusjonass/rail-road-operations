@@ -47,8 +47,9 @@ p {
 }
 .trainBox {
   display: flex;
-  height: 400px;
-  display: inline-block
+  height: 300px;
+  margin-right: 5px;
+  display: inline-block;
 }
 
 .table {

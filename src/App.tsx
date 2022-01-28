@@ -12,6 +12,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  // const outputFun = (props) => {
   return (
     <div className="App">
       <div>
@@ -22,6 +23,6 @@ function App() {
       <InputBox />
     </div>
   );
+  // };
 }
-
 export default App;
