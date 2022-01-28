@@ -73,17 +73,17 @@ const InputBox = () => {
       newRow.destination !== "" &&
       newRow.receiver !== ""
     ) {
-      if (input.some((i) => i.name.includes(newRow.name))) {
-        event.preventDefault();
-        const addedRow = {
-          name: newRow.name,
-          destination: newRow.destination,
-          receiver: newRow.receiver,
-        };
+			if (input.filter(e => e.name === newRow.name).length === 0) {
+					event.preventDefault();
+					const addedRow = {
+					name: newRow.name,
+					destination: newRow.destination,
+					receiver: newRow.receiver,
+					};
 
-        const newInput = [...input, addedRow];
-        console.log(newInput);
-        setInput(newInput);
+					const newInput = [...input, addedRow];
+					console.log(newInput);
+					setInput(newInput);
       } else {
         Swal.fire("This car name is already used");
       }
