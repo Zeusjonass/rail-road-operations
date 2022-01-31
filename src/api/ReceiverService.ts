@@ -26,7 +26,7 @@ export const createReceiver = (receiver: Receiver) => {
   });
 };
 
-export const updateReceiver = (receiver: Receiver, name: string) => {
+export const updateReceiver = (receiver: Receiver, name: string, priority: number) => {
   return axios.patch<Receiver[]>(`${baseUrl}/${name}`, receiver, {
     headers: {
       'Content-Type': 'application/json',

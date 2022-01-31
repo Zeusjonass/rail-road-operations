@@ -83,7 +83,6 @@ const InputBox = () => {
           receiver: newRow.receiver,
         };
         const newInput = [...input, addedRow];
-        console.log(newInput);
         setInput(newInput);
       } else {
         Swal.fire("This car name is already used");
@@ -116,11 +115,14 @@ const InputBox = () => {
   };
 
   const handleSort = async () => {
-    console.log("Old Data: ", input);
     const response = await sort(input);
     const data = response.data;
-    console.log("New Data: ", data);
     setOutput(data);
+    /* Swal.fire({
+      title: "Sorted",
+      icon: "success",
+      confirmButtonText: "Ok",
+    }); */
     Swal.fire({
       title: "Sorted",
       icon: "success",
@@ -158,7 +160,6 @@ const InputBox = () => {
                     id="nameOfCar"
                     required
                     placeholder="Name Of Car"
-                    value="hola"
                     onChange={handleAddFormChange}
                   />
                 </TableCell>
@@ -209,7 +210,7 @@ const InputBox = () => {
           </Table>
         </TableContainer>
 
-        {/* desde aqui va la otra tabla */}
+        {/* TODO CAMBIAR ESTO A OTRO  */}
 
         <InputLabel className="label"> Output table</InputLabel>
         <TableContainer sx={{ margin: 5 }} component={Paper}>

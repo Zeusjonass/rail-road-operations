@@ -26,7 +26,7 @@ export const createDestination = (train: Train) => {
   });
 };
 
-export const updateDestination = (train: Train, name: string) => {
+export const updateDestination = (train: Train, name: string, priority: number) => {
   return axios.patch<Train[]>(`${baseUrl}/${name}`, train, {
     headers: {
       'Content-Type': 'application/json',
