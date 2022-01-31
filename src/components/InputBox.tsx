@@ -158,7 +158,6 @@ const InputBox = () => {
                     id="nameOfCar"
                     required
                     placeholder="Name Of Car"
-                    value="hola"
                     onChange={handleAddFormChange}
                   />
                 </TableCell>
