@@ -1,9 +1,10 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import React from "react";
 import "../src/styles/App.css";
-import TrainBox from "./components/TrainBox";
-import ReceiverBox from "./components/ReceiverBox";
 import InputBox from "./components/InputBox";
+import DestinationsBox from "./components/DestinationsBox";
+import ReceiversBox from "./components/ReceiversBox";
+//import DestinationsTable from "./components/DestinationsTable";
 
 const darkTheme = createTheme({
   palette: {
@@ -18,8 +19,8 @@ function App() {
       <div>
         <h1> Train Sort </h1>
       </div>
-      <TrainBox />
-      <ReceiverBox />
+      <DestinationsBox />
+      <ReceiversBox />
       <InputBox />
     </div>
   );
