@@ -8,15 +8,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { getDestinations } from "../api/TrainService";
-import { getReceivers } from "../api/ReceiverService";
+import { getPriorizables, updatePriorizable } from "../api/CommonService";
 import { Button } from "@mui/material";
 import { sort } from "../api/SortService";
 import { Cart } from "../types/CartType";
 import Swal from "sweetalert2";
 import { InputLabel } from "@mui/material";
 
-const InputBox = () => {
+const InputBox = (props) => {
+
   const [destinations, setDestinations] = useState<any>(null);
   const [receivers, setReceivers] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ const InputBox = () => {
   }, [input, loading]);
 
   const fetchDestinations = async () => {
-    const response = await getDestinations();
+    const response = await getPriorizables(props.destinationsBaseURL);
     const data = response.data;
     const destinations = data.map((x) => {
       return {
@@ -58,7 +58,8 @@ const InputBox = () => {
   };
 
   const fetchReceivers = async () => {
-    const response = await getReceivers();
+    console.log(props)
+    const response = await getPriorizables(props.receiversBaseURL);
     const data = response.data;
     const receivers = data.map((x) => {
       return {
